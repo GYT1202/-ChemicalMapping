@@ -2,6 +2,8 @@
 
 ##### 以文本编辑为主要操作方式的便携工具包。致力于解放双手，使用键盘高效工作
 
+**exe程序包在[这里](https://pan.baidu.com/s/1U2aIVIPhgmfVtTbzgwJVFg?pwd=688u)获取**
+
 #### 程序包列表
 
 - Basic Package 提供基础功能
