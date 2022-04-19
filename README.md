@@ -1,8 +1,6 @@
 # Notepad Plus
 
-##### 以文本编辑为主要操作方式的便携工具包。致力于解放双手，使用键盘高效工作
-
-**exe程序包在[这里](https://pan.baidu.com/s/1U2aIVIPhgmfVtTbzgwJVFg?pwd=688u)获取**
+##### 以文本编辑为主要操作方式的便携工具包。致力于解放双手，使用键盘优雅而高效地工作
 
 #### 程序包列表
 
@@ -53,7 +51,23 @@
     以H2O为中心，与H2O有关的反应以及和这些反应中物质有关的反应，保存在该目录下result.xmind文件内
 
 - 使用 Xmind 8 打开生成的文件（**警告：使用 Xmind 2020+ 将无法打开生成的文档**）[官网](https://www.xmind.cn/xmind8-pro/)
+
+- ~~使用一个原始输入文件作为方程式列表~~：-该部分待设计
+
+  - 使用`cdb 数据库名称`(create database)创建一个方程式列表（将直接使用json存在./database/chemical mapping）
+  - 使用<kbd>Ctrl</kbd>+<kbd>Enter</kbd>直接输入方程式（行末空格指定数据库）
+
 - 作为中间文件，将生成save.json
+
+- ~~使用`upload`将本地文件同步到云~~（实现方向：heroku服务器）
+
+- 导图排列（待设计）
+
+- 关于方程式的输入和解析，使用了开源项目[quichem](https://github.com/spamalot/quichem)
+
+  - 一个很棒的化学方程式解析程序，帮你解放双手
+  - 可以到[这里](https://github.com/spamalot/quichem/releases)下载，到[这里](https://cdn.rawgit.com/spamalot/quichem/263b840dbba5892106650a6fb93efed1749a900c/userguide/USERGUIDE.html)查看它的用户文档（如果不能访问文档页面，可以下载源码里的 [UserGuide](https://github.com/spamalot/quichem/tree/master/userguide)）
+  - 将该解析器嵌入
 
 ## Learn Words Better
 
