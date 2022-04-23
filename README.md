@@ -136,11 +136,11 @@
 
 - input:
 
-  ![image-20220423145531209](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20220423145531209.png)
+  ![image-20220423145531209](https://github.com/GuoYangtuo/Notepad-Plus/tree/main/pngs/image-20220423145531209.png)
 
 - output:
 
-  ![Fe2O3](C:\Users\Lenovo\Desktop\Fe2O3.png)
+  ![Fe2O3](https://github.com/GuoYangtuo/Notepad-Plus/tree/main/pngs/Fe2O3.png)
 
 - input:
 
@@ -150,7 +150,7 @@
 
 - output:
 
-  ![H2O](C:\Users\Lenovo\Desktop\H2O.png)
+  ![H2O](https://github.com/GuoYangtuo/Notepad-Plus/tree/main/pngs/H2O.png)
 
 ## Baidu Translator
 
