@@ -2,12 +2,15 @@
 
 ##### 以文本编辑为主要操作方式的便携工具包。致力于解放双手，使用键盘优雅而高效地工作
 
+时间碎，程序也碎，修修补补凑合吧，有时间会重构
+
 #### 程序包列表
 
 - Basic Package 提供基础功能
 
 - Chemical Mapping 帮助理解物质间转化反应关系
 - Learn Words Better 将英文短语嵌入合适的语境并输出打印文档
+- Baidu Translator 用于获取百度翻译，为Learn Words Better提供前置基础
 
 ## Basic Package
 
@@ -17,7 +20,7 @@
 
 - 每**10分钟**自动保存为文本文档（.\日期.txt）
 
-- 正常退出自动保存文档
+- **正常退出**自动保存文档
 
 - 启动自动读取今日文档
 
@@ -25,12 +28,31 @@
 
   eg:
 
-  - r 读取今日编辑文档
-  - r C:\Users\Lenovo\Desktop\timeMaster.py 读取绝对路径下的文件
+  - `read`读取今日编辑文档
+
+  - `read C:\Users\Lenovo\Desktop\timeMaster.py` 读取绝对路径下的文件
 
 ## Chemical Mapping
 
 可以将化学方程式配平并转化为结构思维导图的程序
+
+#### 关于化学方程式的输入和解析
+
+- 直接使用了开源项目[quichem](https://github.com/spamalot/quichem)
+  - 一个很棒的化学方程式解析程序，可以在输入方程式的时候**除了字母数字符号键以外，不使用任何修饰键（shift等）或鼠标点击**
+  - 可以到[这里](https://github.com/spamalot/quichem/releases)下载，到[这里](https://cdn.rawgit.com/spamalot/quichem/263b840dbba5892106650a6fb93efed1749a900c/userguide/USERGUIDE.html)查看它的用户文档（如果不能访问文档页面，可以下载源码里的 [UserGuide](https://github.com/spamalot/quichem/tree/master/userguide)）
+  - 已经将其嵌入到程序中
+    - 使用<kbd>Ctrl</kbd>+<kbd>q</kbd>启动独立程序
+    - 快速输入程序中使用它快速输入和解析方程式，并将结果传给bce解析配平
+
+- **快速输入程序**
+  - 使用<kbd>Ctrl</kbd>+<kbd>Q</kbd>快速启动
+  - 输入方程式，可以不配平，可以**按照quichem的规则**全部小写，具体见[UserGuide](https://github.com/spamalot/quichem/tree/master/userguide)
+- ~~使用一个原始输入文件作为方程式列表~~：-该部分待设计
+  - 使用`cdb 数据库名称`(create database)创建一个方程式列表（将直接使用json存在./database/chemical mapping）
+  - 使用<kbd>Ctrl</kbd>+<kbd>Enter</kbd>直接输入方程式（行末空格指定数据库）
+- 作为中间文件，将生成save.json，存储了每种物质存在的转化关系
+- ~~使用`upload`将本地文件同步到云~~（实现方向：heroku服务器）
 
 #### 生成xmind思维导图
 
@@ -52,24 +74,38 @@
 
 - 使用 Xmind 8 打开生成的文件（**警告：使用 Xmind 2020+ 将无法打开生成的文档**）[官网](https://www.xmind.cn/xmind8-pro/)
 
-- ~~使用一个原始输入文件作为方程式列表~~：-该部分待设计
+#### 导图排列
 
-  - 使用`cdb 数据库名称`(create database)创建一个方程式列表（将直接使用json存在./database/chemical mapping）
-  - 使用<kbd>Ctrl</kbd>+<kbd>Enter</kbd>直接输入方程式（行末空格指定数据库）
+- **方案一 Random Jump**
 
-- 作为中间文件，将生成save.json
+  - 实现
 
-- ~~使用`upload`将本地文件同步到云~~（实现方向：heroku服务器）
+    如果文字存在重叠（距离过小），将浮动主题随机跳跃一段距离
 
-- 导图排列（待设计）
+  - 参数
 
-- 关于方程式的输入和解析，使用了开源项目[quichem](https://github.com/spamalot/quichem)
+    - distanceLimit 跳跃距离极限
+      $$
+      \frac{d}{dx}e^{ax}=ae^{ax}\quad \sum_{i=1}^{n}{(X_i - \overline{X})^2}$
+      $$
+      
 
-  - 一个很棒的化学方程式解析程序，帮你解放双手
-  - 可以到[这里](https://github.com/spamalot/quichem/releases)下载，到[这里](https://cdn.rawgit.com/spamalot/quichem/263b840dbba5892106650a6fb93efed1749a900c/userguide/USERGUIDE.html)查看它的用户文档（如果不能访问文档页面，可以下载源码里的 [UserGuide](https://github.com/spamalot/quichem/tree/master/userguide)）
-  - 将该解析器嵌入
+    - jumpDisMax 最远跳跃限制
+
+    - jumpDisMax 最近跳跃限制
+
+  - 评价
+
+    简单粗暴，效果欠佳
+
+  - 优化方向
+
+    - 避免主题跳跃过远
+    - 避免页面杂乱性
 
 ## Learn Words Better
+
+#### 	句子搜索
 
 - 输入一个单词或一个短语，按<kbd>Shift</kbd>+<kbd>Enter</kbd>打开搜索框（从百度翻译获取句源，包含牛津，柯林斯，英英，双语等句源）
 
@@ -81,11 +117,13 @@
 
   eg:`not only ... but`
 
+  #### 打印档生成
+
 - 一行的开头使用`$`表示此行为大标题，eg:`$Group 1`，`#`表示以下内容为一个新单词，eg:`#good`，也可以使用`#好的;优质的;____`，没有做中文翻译的部分
 
 - `c`命令生成文档的打印版，添加`-mixed`参数打乱生成顺序
 
-#### 未处理的需求
+## 未处理的需求
 
 - **警告：没有做容错系统，请按照以上规则操作**
 
