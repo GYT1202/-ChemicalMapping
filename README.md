@@ -36,6 +36,8 @@
 
   - `read C:\Users\Lenovo\Desktop\timeMaster.py` 读取绝对路径下的文件
 
+- 使用`-`代表注释掉这一行
+
 ## Chemical Mapping
 
 可以将化学方程式配平并转化为结构思维导图的程序
@@ -87,6 +89,7 @@
 #### 导图排列
 
 - 使用`:mod`命令切换
+
   - 格式：`:mod [mod(randomJump, radio)] param1 param2...`
 
 - ~~**方案一 Random Jump**~~
@@ -128,6 +131,26 @@
     - 直接相邻但已经生成的topic
 
 - 方案三**ShootJump**
+
+#### 例子
+
+- input:
+
+  ![image-20220423145531209](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20220423145531209.png)
+
+- output:
+
+  ![Fe2O3](C:\Users\Lenovo\Desktop\Fe2O3.png)
+
+- input:
+
+  ```
+  toXmind H2O
+  ```
+
+- output:
+
+  ![H2O](C:\Users\Lenovo\Desktop\H2O.png)
 
 ## Baidu Translator
 
